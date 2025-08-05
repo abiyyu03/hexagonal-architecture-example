@@ -1,4 +1,4 @@
-package port
+package entity
 
 type BaseResponse struct {
 	Message string      `json:"message"`

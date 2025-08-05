@@ -2,16 +2,16 @@ package user
 
 import (
 	"context"
-	"go-projects/hexagonal-example/internal/service/model"
+	"go-projects/hexagonal-example/internal/service/entity"
 )
 
-func (s service) GetAll(ctx context.Context) ([]model.User, error) {
-	var response []model.User
+func (s service) GetAll(ctx context.Context) ([]entity.User, error) {
+	var response []entity.User
 
 	cachedUser, err := s.Cache.User.GetAllUser(ctx)
 	if err == nil {
 		for _, value := range cachedUser {
-			response = append(response, model.User{
+			response = append(response, entity.User{
 				ID:    value.ID,
 				Email: value.Email,
 				Name:  value.Name,
@@ -31,7 +31,7 @@ func (s service) GetAll(ctx context.Context) ([]model.User, error) {
 	}
 
 	for _, value := range users {
-		response = append(response, model.User{
+		response = append(response, entity.User{
 			ID:    value.ID,
 			Email: value.Email,
 			Name:  value.Name,
@@ -42,5 +42,5 @@ func (s service) GetAll(ctx context.Context) ([]model.User, error) {
 }
 
 type IGetAll interface {
-	GetAll(ctx context.Context) ([]model.User, error)
+	GetAll(ctx context.Context) ([]entity.User, error)
 }

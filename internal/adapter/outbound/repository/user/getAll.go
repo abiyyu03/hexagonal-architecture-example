@@ -2,11 +2,11 @@ package user
 
 import (
 	"context"
-	"go-projects/hexagonal-example/internal/adapter/outbound/model"
+	"go-projects/hexagonal-example/internal/adapter/outbound/entity"
 )
 
-func (r user) GetAll(ctx context.Context) ([]model.User, error) {
-	var user []model.User
+func (r user) GetAll(ctx context.Context) ([]entity.User, error) {
+	var user []entity.User
 	if err := r.Package.DB.WithContext(ctx).Find(&user).Error; err != nil {
 		return user, err
 	}
@@ -15,5 +15,5 @@ func (r user) GetAll(ctx context.Context) ([]model.User, error) {
 }
 
 type IGetAll interface {
-	GetAll(ctx context.Context) ([]model.User, error)
+	GetAll(ctx context.Context) ([]entity.User, error)
 }

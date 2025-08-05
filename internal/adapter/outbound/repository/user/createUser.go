@@ -2,10 +2,10 @@ package user
 
 import (
 	"context"
-	"go-projects/hexagonal-example/internal/adapter/outbound/model"
+	"go-projects/hexagonal-example/internal/adapter/outbound/entity"
 )
 
-func (r user) CreateUser(ctx context.Context, user model.User) error {
+func (r user) CreateUser(ctx context.Context, user entity.User) error {
 	if err := r.Package.DB.WithContext(ctx).Create(&user).Error; err != nil {
 		return err
 	}
@@ -14,5 +14,5 @@ func (r user) CreateUser(ctx context.Context, user model.User) error {
 }
 
 type ICreateUser interface {
-	CreateUser(ctx context.Context, user model.User) error
+	CreateUser(ctx context.Context, user entity.User) error
 }

@@ -3,14 +3,14 @@ package user
 import (
 	"context"
 	"encoding/json"
-	"go-projects/hexagonal-example/internal/adapter/outbound/model"
+	"go-projects/hexagonal-example/internal/adapter/outbound/entity"
 )
 
-func (c userCache) GetAllUser(ctx context.Context) ([]model.User, error) {
+func (c userCache) GetAllUser(ctx context.Context) ([]entity.User, error) {
 	var key = "users:getAll"
 	result := c.Package.Cache.Client.Get(ctx, key)
 
-	var users []model.User
+	var users []entity.User
 	str, err := result.Result()
 	if err != nil {
 		return nil, err
@@ -24,5 +24,5 @@ func (c userCache) GetAllUser(ctx context.Context) ([]model.User, error) {
 }
 
 type IGetAllUser interface {
-	GetAllUser(ctx context.Context) ([]model.User, error)
+	GetAllUser(ctx context.Context) ([]entity.User, error)
 }

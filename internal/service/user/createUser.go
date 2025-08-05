@@ -2,10 +2,10 @@ package user
 
 import (
 	"context"
-	"go-projects/hexagonal-example/internal/service/model"
+	"go-projects/hexagonal-example/internal/service/entity"
 )
 
-func (s service) CreateUser(ctx context.Context, user model.User) error {
+func (s service) CreateUser(ctx context.Context, user entity.User) error {
 	err := s.Repository.User.CreateUser(ctx, user.ToOutbondUser())
 	if err != nil {
 		return err
@@ -15,5 +15,5 @@ func (s service) CreateUser(ctx context.Context, user model.User) error {
 }
 
 type ICreateUser interface {
-	CreateUser(ctx context.Context, user model.User) error
+	CreateUser(ctx context.Context, user entity.User) error
 }

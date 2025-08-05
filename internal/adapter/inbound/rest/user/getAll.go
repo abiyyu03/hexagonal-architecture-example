@@ -2,7 +2,7 @@ package user
 
 import (
 	"context"
-	"go-projects/hexagonal-example/internal/adapter/inbound/rest/user/port"
+	"go-projects/hexagonal-example/internal/adapter/inbound/rest/user/entity"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -10,7 +10,7 @@ import (
 func (h *Handler) GetAll(fctx *fiber.Ctx) error {
 	var ctx = context.Background()
 	var (
-		response port.BaseResponse
+		response entity.BaseResponse
 	)
 
 	users, err := h.Service.User.GetAll(ctx)

@@ -3,11 +3,11 @@ package user
 import (
 	"context"
 	"encoding/json"
-	"go-projects/hexagonal-example/internal/adapter/outbound/model"
+	"go-projects/hexagonal-example/internal/adapter/outbound/entity"
 	"time"
 )
 
-func (c userCache) SetAllUser(ctx context.Context, user []model.User) error {
+func (c userCache) SetAllUser(ctx context.Context, user []entity.User) error {
 	var key = "users:getAll"
 
 	users, err := json.Marshal(&user)
@@ -26,5 +26,5 @@ func (c userCache) SetAllUser(ctx context.Context, user []model.User) error {
 }
 
 type ISetAllUser interface {
-	SetAllUser(ctx context.Context, user []model.User) error
+	SetAllUser(ctx context.Context, user []entity.User) error
 }
