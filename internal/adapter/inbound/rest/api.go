@@ -7,5 +7,6 @@ func (i Inbound) ApiRoutes(app *fiber.App) {
 		return ctx.SendString("OK LURD")
 	})
 
-	app.Post("/user/register", i.User.RegisterUser)
+	app.Post("/register", i.User.RegisterUser)
+	app.Get("/users", i.User.GetAll)
 }
