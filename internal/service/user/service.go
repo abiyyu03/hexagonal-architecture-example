@@ -7,6 +7,7 @@ import (
 
 type UserService interface {
 	ICreateUser
+	IGetAll
 }
 
 type service struct {
